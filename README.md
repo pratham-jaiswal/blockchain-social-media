@@ -28,8 +28,12 @@ PROJECT_ID='<YOUR INFRUA PROJECT ID>'
 const projectId = '<YOUR INFRUA PROJECT ID>';
 const projectSecret = '<YOUR INFRUA API KEY>';
 ```
-15. Compile the smart contracts using ```truffle migrate --reset --network development``` (the use of ```--network development``` is optional). If you want to publish it on any other network like *Goerli*, then use ```truffle migrate --reset --network goerli```.
-16. Run the app using ```npm run start```.
+15. In *main.js* **line 51** remove ```<Your-dedicated-gateway>``` with your **dedicated gateway subdomain** provided on Infura.
+```js
+<p class="text-center"><img src={`<Your-dedicated-gateway>/ipfs/${image.hash}`} alt=""/></p>
+```
+16. Compile the smart contracts using ```truffle migrate --reset --network development``` (the use of ```--network development``` is optional). If you want to publish it on any other network like *Goerli*, then use ```truffle migrate --reset --network goerli```.
+17. Run the app using ```npm run start```.
 
 ### _Requirements_
 1. Metamask Account [(1)]
