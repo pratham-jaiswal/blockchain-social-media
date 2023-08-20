@@ -31,7 +31,6 @@
     justify-content: flex-start;
     gap: 50px;
     margin: 0 15%;
-    
 }
 
 .card{
@@ -42,10 +41,14 @@
 .text-center{
     height: 300px;
     vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .text-center img, .text-center video{
     max-width: 420px;
+    max-height: 300px;
 }
 
 .ml-2{
