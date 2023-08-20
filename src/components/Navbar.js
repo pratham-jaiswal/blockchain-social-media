@@ -24,7 +24,7 @@ class Navbar extends Component {
               (<div className="d-flex">
                 <small className="text-secondary p-2">
                   <span>Balance:</span>&nbsp;
-                  <small id="account">{this.props.balance}</small>
+                  <small id="account">{this.props.balance} ETH</small>
                 </small>
                 <small className="text-secondary p-2">
                   <span>Earned:</span>&nbsp;
@@ -37,7 +37,7 @@ class Navbar extends Component {
                 <div className="p-2">
                   <small className="text-secondary">
                     <span>Address:</span>&nbsp;
-                    <small id="account">{this.props.account} ETH</small>
+                    <small id="account">{this.props.account}</small>
                   </small>
                   <img
                     className='ml-2'
