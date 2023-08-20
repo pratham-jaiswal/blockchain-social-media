@@ -33,10 +33,11 @@ class App extends Component {
     }
   };
 
-  initializeWeb3(account) {
+  async initializeWeb3(account) {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
       // Initialize web3 with the user's account
+      await window.ethereum.enable()
       window.web3.eth.defaultAccount = account;
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
@@ -86,7 +87,6 @@ class App extends Component {
   uploadMedia = (description, mediaType) => {
     console.log(`Submitting file to ipfs...`);
 
-    // Adding file to IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('Ipfs result', result);
       if (error) {
@@ -124,13 +124,10 @@ class App extends Component {
     if (this.state.engager) {
       this.state.engager.events.MediaTipped({}, (error, event) => {
         if (!error) {
-          // Add the event to the array of mediaTippedEvents
           this.setState({
             mediaTippedEvents: [...this.state.mediaTippedEvents, event]
           });
-  
-          // Update the corresponding media object in the state
-          console.log(event.returnValues.id, event.returnValues.tipAmount)
+
           this.updateTippedMedia(event.returnValues.id, event.returnValues.tipAmount);
         }
       });
@@ -142,7 +139,7 @@ class App extends Component {
     this.state = {
       account: '',
       engager: null,
-      media: [], // Use a single state for both images and videos
+      media: [],
       user: {},
       loading: true,
       authenticated: false,
@@ -175,7 +172,7 @@ class App extends Component {
                 </div>
                 : <Main
                     account={this.state.account}
-                    media={this.state.media} // Use a single state for both images and videos
+                    media={this.state.media}
                     captureFile={this.captureFile}
                     uploadMedia={this.uploadMedia}
                     tipMediaOwner={this.tipMediaOwner}
