@@ -5,6 +5,7 @@ contract Engager {
   string public name;
   uint public mediaCount = 0;
   mapping(uint => Media) public media;
+  mapping(uint => mapping(address => uint)) public mediaTips;
 
   enum MediaType { Image, Video }
 
@@ -60,6 +61,7 @@ contract Engager {
     _author.transfer(msg.value);
 
     _media.tipAmount += msg.value;
+    mediaTips[_id][msg.sender] += msg.value;
     media[_id] = _media;
 
     emit MediaTipped(_id, _media.hash, _media.description, _media.mediaType, _media.tipAmount, _author);

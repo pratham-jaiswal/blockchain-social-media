@@ -39,11 +39,13 @@ class App extends Component {
       // Initialize web3 with the user's account
       await window.ethereum.enable()
       window.web3.eth.defaultAccount = account;
-    } else if (window.web3) {
+    }
+    else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
       // Initialize web3 with the user's account
       window.web3.eth.defaultAccount = account;
-    } else {
+    }
+    else {
       console.error('Web3 is not available.');
     }
   }
@@ -65,9 +67,20 @@ class App extends Component {
           media: [...this.state.media, mediaInfo]
         });
       }
-      this.setState({ loading: false})
+
+      const balance = parseFloat(window.web3.utils.fromWei(await web3.eth.getBalance(this.state.account))).toFixed(2);
+      this.setState({ balance: balance.toString() });
+
+      const tipped = await this.calculateTotalTipped();
+      this.setState({ tipped: (parseFloat(tipped).toFixed(2)).toString() });
+
+      const earned = this.calculateTotalEarned();
+      this.setState({ earned: (parseFloat(earned).toFixed(2)).toString() });
+
       this.initializeEventListeners();
-    } else {
+      this.setState({ loading: false})
+    }
+    else {
       window.alert('Engager contract not deployed to detected network.')
     }
   }
@@ -120,6 +133,30 @@ class App extends Component {
     this.setState({ media: updatedMedia });
   }
 
+  calculateTotalEarned() {
+    var userMedia = this.state.media.filter(obj => obj.author === this.state.account);
+    let totalEarned = userMedia.reduce((accumulator, media) => {
+      return accumulator.add(window.web3.utils.toBN(media.tipAmount));
+    }, window.web3.utils.toBN(0));
+  
+    return window.web3.utils.fromWei(totalEarned.toString(), 'Ether');
+  }
+
+  async calculateTotalTipped() {
+    const web3 = window.web3;
+    const userAccount = this.state.account;
+    const mediaCount = this.state.mediaCount;
+    
+    let totalTipped = web3.utils.toBN(0);
+  
+    for (let i = 1; i <= mediaCount; i++) {
+      const userTip = await this.state.engager.methods.mediaTips(i, userAccount).call();
+      totalTipped = totalTipped.add(web3.utils.toBN(userTip));
+    }
+  
+    return web3.utils.fromWei(totalTipped.toString(), 'Ether');
+  }
+
   initializeEventListeners() {
     if (this.state.engager) {
       this.state.engager.events.MediaTipped({}, (error, event) => {
@@ -127,11 +164,21 @@ class App extends Component {
           this.setState({
             mediaTippedEvents: [...this.state.mediaTippedEvents, event]
           });
-
+          this.calculateAndSetNewTippedAmount();
           this.updateTippedMedia(event.returnValues.id, event.returnValues.tipAmount);
         }
       });
     }
+  }
+
+  async calculateAndSetNewTippedAmount() {
+    const newTipped = await this.calculateTotalTipped();
+    const newEarned = parseFloat(this.calculateTotalEarned()).toFixed(2);
+    
+    this.setState({
+      tipped: (parseFloat(newTipped).toFixed(2)).toString(),
+      earned: newEarned.toString()
+    });
   }
 
   constructor(props) {
@@ -140,10 +187,14 @@ class App extends Component {
       account: '',
       engager: null,
       media: [],
+      mediaCount: 0,
       user: {},
       loading: true,
       authenticated: false,
-      mediaTippedEvents: []
+      mediaTippedEvents: [],
+      balance: '0',
+      earned: '0',
+      tipped: '0'
     };
   
     this.uploadMedia = this.uploadMedia.bind(this);
@@ -165,7 +216,14 @@ class App extends Component {
               <p>Loading...</p>
             </div>
             : <div>
-                <Navbar account={this.state.account} authenticated={this.state.authenticated} loading={this.state.loading } />
+                <Navbar
+                  account={this.state.account}
+                  authenticated={this.state.authenticated}
+                  loading={this.state.loading }
+                  balance={this.state.balance}
+                  earned={this.state.earned}
+                  tipped= {this.state.tipped}
+                />
                 { !this.state.authenticated?
                 <div id="loader" className="text-center mt-5">
                   <p>Please Login</p>

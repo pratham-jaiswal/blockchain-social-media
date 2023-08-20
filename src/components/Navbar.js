@@ -21,19 +21,34 @@ class Navbar extends Component {
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
             { this.props.authenticated?
-              (<div>
-                <small className="text-secondary">
-                  <span>Address:</span>&nbsp;
-                  <small id="account">{this.props.account}</small>
+              (<div className="d-flex">
+                <small className="text-secondary p-2">
+                  <span>Balance:</span>&nbsp;
+                  <small id="account">{this.props.balance}</small>
                 </small>
-                <img
-                  className='ml-2'
-                  width='30'
-                  height='30'
-                  alt=""
-                  src={`https://robohash.org/${this.props.account}?set=set1`}
-                  // src={this.props.pfp}
-                />
+                <small className="text-secondary p-2">
+                  <span>Earned:</span>&nbsp;
+                  <small id="account">{this.props.earned} ETH</small>
+                </small>
+                <small className="text-secondary p-2">
+                  <span>Tipped:</span>&nbsp;
+                  <small id="account">{this.props.tipped} ETH</small>
+                </small>
+                <div className="p-2">
+                  <small className="text-secondary">
+                    <span>Address:</span>&nbsp;
+                    <small id="account">{this.props.account} ETH</small>
+                  </small>
+                  <img
+                    className='ml-2'
+                    width='30'
+                    height='30'
+                    alt=""
+                    src={`https://robohash.org/${this.props.account}?set=set1`}
+                    // src={this.props.pfp}
+                  />
+                </div>
+                     
                 <LogoutButton />
               </div>)
               : <LoginButton />
