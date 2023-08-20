@@ -52,7 +52,6 @@ class App extends Component {
     // Network ID
     const networkId = await web3.eth.net.getId()
     const networkData = Engager.networks[networkId]
-    console.log("a"+networkData)
     if(networkData) {
       const engager = new web3.eth.Contract(Engager.abi, networkData.address)
       this.setState({ engager })
@@ -66,6 +65,7 @@ class App extends Component {
         });
       }
       this.setState({ loading: false})
+      this.initializeEventListeners();
     } else {
       window.alert('Engager contract not deployed to detected network.')
     }
@@ -104,9 +104,37 @@ class App extends Component {
   tipMediaOwner(id, tipAmount) {
     this.setState({ loading: true })
     this.state.engager.methods.tipMediaOwner(id).send({ from: this.state.account, value: tipAmount }).on('transactionHash', (hash) => {
-      this.setState({ loading: false })
-      window.location.reload()
+      this.setState({ loading: false });
     })
+  }
+
+  updateTippedMedia(id, tipAmount) {
+    const updatedMedia = this.state.media.map((media) => {
+      if (media.id === id) {
+        const updatedTipAmount = window.web3.utils.toBN(tipAmount);
+        return { ...media, tipAmount: updatedTipAmount.toString() };
+      }
+      return media;
+    });
+  
+    this.setState({ media: updatedMedia });
+  }
+
+  initializeEventListeners() {
+    if (this.state.engager) {
+      this.state.engager.events.MediaTipped({}, (error, event) => {
+        if (!error) {
+          // Add the event to the array of mediaTippedEvents
+          this.setState({
+            mediaTippedEvents: [...this.state.mediaTippedEvents, event]
+          });
+  
+          // Update the corresponding media object in the state
+          console.log(event.returnValues.id, event.returnValues.tipAmount)
+          this.updateTippedMedia(event.returnValues.id, event.returnValues.tipAmount);
+        }
+      });
+    }
   }
 
   constructor(props) {
@@ -117,12 +145,18 @@ class App extends Component {
       media: [], // Use a single state for both images and videos
       user: {},
       loading: true,
-      authenticated: false
+      authenticated: false,
+      mediaTippedEvents: []
     };
   
     this.uploadMedia = this.uploadMedia.bind(this);
     this.tipMediaOwner = this.tipMediaOwner.bind(this);
     this.captureFile = this.captureFile.bind(this);
+    this.initializeWeb3 = this.initializeWeb3.bind(this);
+    this.loadBlockchainData = this.loadBlockchainData.bind(this);
+    this.initializeEventListeners = this.initializeEventListeners.bind(this);
+    this.updateTippedMedia = this.updateTippedMedia.bind(this);
+    this.initializeWeb3();
   }
 
   render() {

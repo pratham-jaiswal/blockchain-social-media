@@ -34,6 +34,7 @@ class Main extends Component {
                     type="file"
                     accept=".jpg, .jpeg, .png, .bmp, .gif, .mp4, .ogg, .webm" // Add supported formats
                     onChange={this.props.captureFile}
+                    required
                   />
                   <div className="form-group mr-sm-2">
                     <br/><br/>
