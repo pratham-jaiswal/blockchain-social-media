@@ -2,7 +2,7 @@
   "name": "engager",
   "version": "2.1.0",
   "description": "Decentralized Social Media",
-  "author": "ISAA",
+  "author": "Pratham Jaiswal",
   "homepage": ".",
   "dependencies": {
     "@auth0/auth0-react": "^2.2.0",
