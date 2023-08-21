@@ -11,15 +11,12 @@ A blockchain-based social media platform where users can post images/videos and 
 **2. Media Upload and Display**
 - Users can upload images and videos to IPFS.
 - Uploaded media is displayed on the main page.
-- Uploaded media includes descriptions, author information, and media type.
+- Uploaded media includes descriptions, creator information, and media type.
 
 **3. Media Interaction**
 - Users can view and play uploaded media files (images and videos).
-- Users can tip the author of media using Ethereum.
+- Users can tip the creator of media using Ethereum.
 - Earned and tipped amounts are updated dynamically.
-
-**4. Responsive Desig**n
-- The application is designed to be responsive and usable on various screen sizes.
 
 ## Requirements
 ### Metamask
