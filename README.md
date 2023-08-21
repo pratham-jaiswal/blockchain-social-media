@@ -1,7 +1,7 @@
 # Blockchain Approach to Decentralize Social Media - Engager
-![Imgur](https://i.imgur.com/FW4cLx2.png)
+A blockchain-based social media platform where users can post images and tip test ethereum to others. Images are stored on Infura IPFS nodes using content-based addressing.
 
-<br/><br/>
+![Imgur](https://i.imgur.com/FW4cLx2.png)
 
 ## Features
 **1. User Authentication**
