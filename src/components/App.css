@@ -19,6 +19,20 @@
     font-size: 16px;
 }
 
+.white-btn{
+    background-color: white;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.white-btn:hover{
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
+
 .post-img{
     margin: 0 15%;
     max-width: 500px;
