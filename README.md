@@ -47,7 +47,7 @@ A blockchain-based social media platform where users can post images/videos and 
 ### Auth0
 1. Login/Create an account on [Auth0](https://auth0.com/).
 2. If you created a new account fill the details further asked.
-3. Once the dashboard opens, on the cidebar click on **Applications**, and then again **Applications**.
+3. Once the dashboard opens, on the sidebar click on **Applications**, and then again **Applications**.
 4. Click on **Create Applications**, then choose **Single Page Web Applications**, and then **Create**.
 5. Go to the **Settings** tab and copy the **Domain**, **Client ID**, and **Client Secret**, then edit the *.env* file as:
     ```.env
