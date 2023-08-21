@@ -200,11 +200,8 @@ class App extends Component {
     this.uploadMedia = this.uploadMedia.bind(this);
     this.tipMediaOwner = this.tipMediaOwner.bind(this);
     this.captureFile = this.captureFile.bind(this);
-    this.initializeWeb3 = this.initializeWeb3.bind(this);
-    this.loadBlockchainData = this.loadBlockchainData.bind(this);
     this.initializeEventListeners = this.initializeEventListeners.bind(this);
     this.updateTippedMedia = this.updateTippedMedia.bind(this);
-    this.initializeWeb3();
   }
 
   render() {
