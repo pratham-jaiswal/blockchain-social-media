@@ -4,9 +4,8 @@ import Navbar from './Navbar'
 import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
-import UserDataComponent from './GetUserData';
+import GetUserData from './GetUserData';
 
-//Declare IPFS variables
 const projectId = process.env.REACT_APP_PROJECT_ID;
 const projectSecret = process.env.REACT_APP_PROJECT_SECRET;
 
@@ -36,13 +35,11 @@ class App extends Component {
   async initializeWeb3(account) {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      // Initialize web3 with the user's account
       await window.ethereum.enable()
       window.web3.eth.defaultAccount = account;
     }
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      // Initialize web3 with the user's account
       window.web3.eth.defaultAccount = account;
     }
     else {
@@ -52,7 +49,6 @@ class App extends Component {
 
   async loadBlockchainData() {
     const web3 = window.web3
-    // Network ID
     const networkId = await web3.eth.net.getId()
     const networkData = Engager.networks[networkId]
     if(networkData) {
@@ -60,7 +56,6 @@ class App extends Component {
       this.setState({ engager })
       const mediaCount = await engager.methods.mediaCount().call();
       this.setState({ mediaCount })
-      // Load images
       for (var i = mediaCount; i >= 1; i--) {
         const mediaInfo = await engager.methods.media(i).call();
         this.setState({
@@ -207,7 +202,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <UserDataComponent onUserLoaded={this.handleUserLoaded} />
+        <GetUserData onUserLoaded={this.handleUserLoaded} />
         { this.state.loading ?
             <div id="loader" className="text-center mt-5">
               <p>Loading...</p>
