@@ -1,64 +1,69 @@
 # GenSea - Blockchain based Social Media
-![Imgur](https://i.imgur.com/ybWQCYY.png)
 
-<br/><br/>
+GenSea is a decentralized social media platform that uses Ethereum smart contracts to store user data and IPFS for image storage. The platform also allows users to chat with each other. The platform is built using React, Truffle, and Solidity.
 
-## Get Started
-1. Works perfectly on ***Node v16.20.1***
-2. Run ```npm install``` to download the required node modules.
-3. On windows the *truffle-config.js* file shouldn't be renamed to *truffle.js*.
-4. Download [Ganache], click on **New Workspace**, then under **Truffle Projects** click on **Add Project**, then locate and select your *truffle-config.js* file, then click on **Save Workspace**.
-5. Install [Metamask] browser plugin, and create an account.
-6. Setup Ganache network on Metamask by following this [guide], and export some of your ganache accounts to metamask by following this [guide.]
-7. Create an [Infura] account, and provide all the details.
-8. If you created a new infura account then **Create Your First Project**, select **IPFS** in **Network** and enter your **Project Name**.
-9. Then click on **Create New Key**, select **IPFS** in **Network** and enter your **Project Name**.
-10. Enter the card details (if you are making your first project, else you would have completed this step earlier).
-The details can be seen in the image below:
+## Features
 
-![Infura First Project Requirement](https://i.imgur.com/fdvm6DY.jpg)
+1. User can login or create an account using their Ethereum Wallet (Metamask).
+2. User can create posts with images and videos.
+3. Posts are moderated using Sightengine before being uploaded.
+4. User can tip ethereum on posts.
+5. User can chat with other users.
 
-11. Now you'll get a **Project ID** and **API Key**.
-12. Enable the **Dedicated Gateways** and enter a **UNIQUE SUBDOMAIN NAME**.
-13. Now back to the files, run the command ```touch .env``` 
-14. Edit the *.env* file as:
+## Demo
 
+| ![](https://res.cloudinary.com/dhzmockpa/image/upload/v1718704300/Blockchain%20Social%20Media%20GitHub/evqmmbhinprzfenn2dtt.png) |
+|:--:|
+| <i>Homepage</i>|
+
+| ![](https://res.cloudinary.com/dhzmockpa/image/upload/v1718704300/Blockchain%20Social%20Media%20GitHub/uxl3srbi0rrdorwupexq.png) |
+|:--:|
+| <i>User Profile</i>|
+
+| ![](https://res.cloudinary.com/dhzmockpa/image/upload/v1718704299/Blockchain%20Social%20Media%20GitHub/w5qna0shqng1n75nwafm.png) |
+|:--:|
+| <i>Chat</i>|
+
+## Technologies Used
+
+1. React.js
+2. [Truffle](https://archive.trufflesuite.com/)
+3. [Ganache](https://archive.trufflesuite.com/ganache/)
+4. [Solidity](https://soliditylang.org/)
+5. [Infura](https://app.infura.io/) IPFS
+6. [Sightengine](https://sightengine.com/)
+
+## Getting Started (Node v16.20.1)
+
+1. Clone the repository
+```sh
+git clone https://github.com/pratham-jaiswal/blockchain-social-media.git
 ```
-INFURA_API_KEY='<YOUR INFRUA API KEY>'
-MNEMONIC='<Your Ganache 12 Phrase Mnemonic>'
-PROJECT_ID='<YOUR INFRUA PROJECT ID>'
+2. Install dependencies
+```sh
+cd blockchain-social-media
+npm install
 ```
-
-15. If the authorization is failing the remove the variables ```PROJECT_ID``` and ```INFURA_API_KEY``` from *app.js* file and directly past your api key and project id as:
-
-```js
-//Declare IPFS
-const projectId = '<YOUR INFRUA PROJECT ID>';
-const projectSecret = '<YOUR INFRUA API KEY>';
+3. Start Ganache app
+4. Compile and deploy smart contracts
+```sh
+truffle compile
+truffle migrate
 ```
-
-16. In *main.js* **line 51** remove ```<Your-dedicated-gateway>``` with your **dedicated gateway subdomain** provided on Infura.
-
-```js
-<p class="text-center"><img src={`<Your-dedicated-gateway>/ipfs/${image.hash}`} alt=""/></p>
+5. Retrieve the Auth0, Infura, and Sightengine keys, then add them to the .env file using the .env-example as a reference.
+```.env
+REACT_APP_PROJECT_SECRET=INFURA_SECRET
+REACT_APP_PROJECT_ID=INFURA_PROJECT_ID
+REACT_APP_GATEWAY=https://YOUR-GATEWAY.infura-ipfs.io
+REACT_APP_AUTH0_DOMAIN=AUTH0_DOMAIN
+REACT_APP_AUTH0_ID=AUTH0_ID
+REACT_APP_SIGHTENGINE_WORKFLOW=SIGHTENGINE_WORKFLOW
+REACT_APP_SIGHTENGINE_USER=SIGHTENGINE_USER
+REACT_APP_SIGHTENGINE_SECRET=SIGHTENGINE_SECRET
+REACT_APP_SIGHTENGINE_IMG_URL=https://api.sightengine.com/1.0/check-workflow.json
+REACT_APP_SIGHTENGINE_VID_URL=https://api.sightengine.com/1.0/video/check-workflow-sync.json
 ```
-
-17. Compile the smart contracts using ```truffle migrate --reset --network development``` (the use of ```--network development``` is optional). If you want to publish it on any other network like *Goerli*, then use ```truffle migrate --reset --network goerli```.
-18. Run the app using ```npm run start```.
-
-### _Requirements_
-1. Metamask Account [(1)]
-2. Ganache GUI [(2)]
-3. Infura account and key [(3)]
-4. Node Package Manager [(4)]
-
-[//]: #
-
-   [Ganache]: <https://trufflesuite.com/ganache/>
-   [Infura]: <https://infura.io/>
-   [guide]: <https://dapp-world.com/blogs/01/how-to-connect-ganache-with-metamask-and-deploy-smart-contracts-on-remix-without-1619847868947>
-   [guide.]: <https://www.geeksforgeeks.org/how-to-set-up-ganche-with-metamask/#:~:text=Ganache%20CLI,on%20the%20ganache%20blockchain%20successfully.>
-   [(1)]: <https://myterablock.medium.com/how-to-create-or-import-a-metamask-wallet-a551fc2f5a6b>
-   [(2)]: <https://trufflesuite.com/docs/ganache/quickstart/>
-   [(3)]: <https://blog.infura.io/post/getting-started-with-infura-28e41844cc89>
-   [(4)]: <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/>
+6. Start the React app
+```sh
+npm start
+```
