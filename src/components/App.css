@@ -1,0 +1,347 @@
+body {
+    background-color: rgb(229, 229, 229);
+}
+
+.navbar {
+    background-color: rgb(0, 163, 133);
+    box-shadow: 0px -10px 5px 10px #111;
+    height: 9vh;
+}
+
+.navbar-brand {
+    display: flex;
+    gap: 10px;
+}
+
+.app-logo {
+    background-color: white;
+    border-radius: 25px;
+}
+
+.app-name {
+    font-style: italic;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    object-position: center top;
+}
+
+.navbar small,
+.navbar span {
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+} 
+
+.white-btn {
+    background-color: white;
+    padding: 10px 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.white-btn:hover {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
+
+.user-profile {
+    margin: 0 15%;
+    display: flex;
+    gap: 50px;
+}
+
+.post-img {
+    margin: 0 15%;
+    max-width: 500px;
+}
+
+.big-pfp {
+    width: 70px;
+    border-radius: 50%;
+}
+
+.user-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-address{
+    font-style: italic;
+}
+
+.profile-posts{
+    margin: 0 15%;
+}
+
+.posts {
+    max-width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 50px;
+    margin: 0 15%;
+}
+
+.card {
+    flex: 1 0 40%;
+    max-width: 500px;
+}
+
+.card-header{
+    display: flex;
+}
+
+.card-user{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-username{
+    font-size: 12px;
+}
+
+.card-address{
+    font-size: 10px;
+    font-style: italic;
+}
+
+.text-center {
+    height: 300px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center img,
+.text-center video {
+    max-width: 420px;
+    max-height: 300px;
+}
+
+.ml-2 {
+    background-color: white;
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 50%;
+}
+
+form .btn {
+    background-color: rgb(0, 163, 133);
+    color: white;
+    font-weight: bold;
+    width: 100%;
+}
+
+div .mr-2 {
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 50%;
+}
+
+li .more {
+    display: flex;
+    justify-content: space-between;
+}
+
+.earning {
+    padding: 7px;
+}
+
+.tipsection {
+    width: 200px;
+}
+
+.tipsection .btn {
+    background-color: rgb(0, 163, 133);
+    color: white;
+}
+
+.tipsection input {
+    padding: 3px;
+    max-width: 70px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.tipsection input:focus {
+    outline: none;
+}
+
+.register-form {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.register-form div {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form .btn {
+    width: 30%;
+}
+
+.register-form .register-input {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 7px;
+    box-shadow: 2px 2px 3px black;
+}
+
+.ChatApp {
+    display: flex;
+    height: 89vh;
+    overflow-y: hidden;
+    margin: 1vh 0;
+}
+
+.contacts-container {
+    width: 30%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.contact {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact:hover {
+    background-color: #e0e0e0;
+}
+
+.selected {
+    background-color: #d0d0d0;
+}
+
+.messages-container {
+    width: 70%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.chat-area {
+    width: 100%;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 90%;
+}
+
+.message {
+    max-width: 45%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.from {
+    align-self: flex-start;
+    background-color: #dcf8c6;
+}
+
+.to {
+    align-self: flex-end;
+    background-color: #ffffff;
+    margin: 7px 15px;
+}
+
+.send-message {
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+}
+
+.write-message {
+    width: 100%;
+    padding: 10px;
+}
+
+.send-button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 1px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #0056b3;
+}
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
+.process {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color: orange;
+}
+
+.success {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color: green;
+}
