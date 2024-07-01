@@ -1,3 +1,5 @@
+![](https://i.imgur.com/J3VXIvb.png)
+
 # GenSea - Blockchain based Social Media
 
 GenSea is a decentralized social media platform that uses Ethereum smart contracts to store user data and IPFS for image and video storage, while preventing innappropriate posts to be uploaded. The platform also allows users to chat with each other. The platform is built using React, Truffle, and Solidity.
